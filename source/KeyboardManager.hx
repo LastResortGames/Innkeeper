@@ -37,12 +37,12 @@ class KeyboardManager
 	
 	public function GetKeyPressed(key:String)
 	{
-		trace(FlxG.keys.anyJustPressed([KeyBindings.get(key).name]));
+		return FlxG.keys.anyJustPressed([KeyBindings.get(key).name]);
 	}
 	
 	public function GetKeyHeld(key:String)
 	{
-		trace(FlxG.keys.anyPressed([KeyBindings.get(key).name]));
+		return FlxG.keys.anyPressed([KeyBindings.get(key).name]);
 	}
 	
 	public function ReplaceKey(key:String, binding:FlxKey)
