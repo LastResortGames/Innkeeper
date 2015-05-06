@@ -23,15 +23,20 @@ class LevelState extends FlxState
 {
 	
 	public var BaseInn:Inn;
-	
+	public var innDesk:FlxSprite;
+	public var hero:Hero;
+	public var dialogOne:DialogueBox;
 	
 	override public function create():Void
 	{
 		super.create();
 		BaseInn = new Inn(10, 10);
-		
-		
-		
+		innDesk = new FlxSprite(200, 200, AssetPaths.buttonDefault__png);
+		add(innDesk);
+		hero = new Hero(200, 180, AssetPaths.eightbitwoman__png);
+		add(hero);
+		dialogOne = new DialogueBox(0, 0);
+		dialogOne.SetText("Hello World!", 300);
 	}
 	
 	
@@ -42,7 +47,7 @@ class LevelState extends FlxState
 	{
 		super.update();
 		
-		
+		dialogOne.update();
 	}
 	
 	

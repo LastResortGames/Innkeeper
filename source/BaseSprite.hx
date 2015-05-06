@@ -13,4 +13,9 @@ class BaseSprite extends FlxSprite
 		super(x, y, SimpleGraphic);
 	}
 	
+	override public function update():Void 
+	{
+		super.update();
+	}
+	
 }
