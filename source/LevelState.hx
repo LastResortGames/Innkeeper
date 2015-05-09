@@ -34,7 +34,7 @@ class LevelState extends FlxState
 		innDesk = new FlxSprite(200, 200, AssetPaths.buttonDefault__png);
 		add(innDesk);
 		hero = new Hero(200, 180, AssetPaths.eightbitwoman__png);
-		add(hero);
+		//add(hero);
 		dialogOne = new DialogueBox(0, 0);
 		dialogOne.SetText("Hello World!", 300);
 	}

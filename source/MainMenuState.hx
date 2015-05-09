@@ -36,6 +36,11 @@ class MainMenuState extends FlxState
 		Credits = new FlxText(32, FlxG.height - 32, FlxG.width - 64, "Credits: Programming/Design: Last Resort Games.", 12);
 		add(Credits);
 		
+		var nineslice:FlxSprite = new FlxSprite(300, 300);
+		nineslice.loadGraphic(AssetPaths.nineslice__png, false, 16, 16);
+		add(nineslice);
+		nineslice.setGraphicSize(32, 32);
+		
 				
 	}
 	

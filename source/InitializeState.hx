@@ -17,8 +17,8 @@ class InitializeState extends FlxState
 		
 		super.create();
 		Reg.keymanage = new KeyboardManager();
-		Reg.keymanage.AddKey("Confirm", new FlxKey("SPACE"));
-		Reg.keymanage.AddKey("Test", new FlxKey("R"));
+		Reg.keymanage.AddKey("Confirm", ["SPACE"]);
+		Reg.keymanage.AddKey("Test", ["R","T"]);
 		
 		
 		
