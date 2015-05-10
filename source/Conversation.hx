@@ -1,5 +1,7 @@
 package;
 
+import flixel.util.FlxPoint;
+
 /**
  * ...
  * @author Last Resort Games
@@ -10,17 +12,64 @@ class Conversation
 	public var Dialog:Map<Int,DialogueBox>;
 	public var numDialog:Int;
 	
-	public function new() 
-	{		
+	public var CurrDIndex:Int;
+	public var CurrDialog:DialogueBox;
+	
+	public var nsl:NineSpliceFlxSprite;
+	
+	public var NoMoreText:Bool;
+	
+	public var pos:FlxPoint;
+	public var WdHt:FlxPoint;
+	
+	public function new(X:Float, Y:Float,Width:Int, Height:Int) 
+	{
 		Dialog = new Map<Int,DialogueBox>();
+		pos = new FlxPoint(X, Y);
+		WdHt = new FlxPoint(Width, Height);
 		numDialog = 0;
+		CurrDIndex = 0;
+		nsl = new NineSpliceFlxSprite("assets/images/nineslice", ".png");
+		nsl.ResizeSlices(Width, Height, new FlxPoint(X, Y));
+		
 	}
 	
-	public function AddDialog(dialog:DialogueBox)
+	public function update()
 	{
-		
-		Dialog.set(numDialog, dialog);
+		if(!NoMoreText)
+		{
+			CurrDialog.update();
+			if (CurrDialog.IsTextDone())
+			{
+				ContinueToNextDialogue();
+			}
+		}		
+	}
+	
+	public function AddDialog(txt:String, spd:Int)
+	{
+		Dialog.set(numDialog, new DialogueBox(pos.x,pos.y,Std.int(WdHt.x),Std.int(WdHt.y)));
+		Dialog.get(numDialog).SetText(txt, spd);
 		numDialog++;
+	}
+	
+	public function ContinueToNextDialogue()
+	{
+		if (CurrDialog != null)
+		{
+			CurrDialog.RemoveTextFromScreen();
+		}
+		CurrDialog = Dialog.get(CurrDIndex);
+		if (CurrDialog != null)
+		{
+			trace("hello");
+			CurrDialog.AddTextToScreen();
+		}
+		else
+		{
+			NoMoreText = true;
+		}
+		CurrDIndex++;
 	}
 	
 }

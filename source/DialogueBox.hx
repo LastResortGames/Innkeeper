@@ -28,34 +28,52 @@ class DialogueBox extends BaseSprite
 	
 	public var textBox:FlxText;
 	
+	public var contText:Bool;
+	
 	
 
 	public function new(X:Float, Y:Float, Width:Int, Height:Int ) 
 	{
 		super(X, Y);
 		
+		var halfouter:Int = 8;
 		var innerWid:Int = Width - 16;
 		var innerHt:Int = Height - 16;
 		if (Width > 128)
 		{
 			innerWid = Width - 128;
+			halfouter = 32;
 		}
 		if (Height > 128)
 		{
-			innerHt= Height - 128;
-		}
+			innerHt = Height - 128;
+			halfouter = 32;
+		}		
 		
-		textBox = new FlxText(X - (innerWid/2), Y-(innerHt/2), 200, "", 14);
-		textBox.setBorderStyle(FlxText.BORDER_OUTLINE,0xf);
+		textBox = new FlxText(X - (innerWid/2) - halfouter, Y-(innerHt/2)- halfouter, innerWid + (halfouter * 2), "", 20);
 		
 		timePerTick = 0;
 		characterTimer = 0;
 		displayIndex = 0;
+		contText = false;
 		
-		var nsl:NineSpliceFlxSprite = new NineSpliceFlxSprite("assets/images/nineslice", ".png");
-		nsl.ResizeSlices(Width, Height, new FlxPoint(X, Y));
+	}
+	
+	public function RemoveTextFromScreen()
+	{
+		trace(textBox.text);
+		FlxG.state.remove(textBox, true);
+	}
+	
+	public function AddTextToScreen()
+	{
+		trace(textBox.text);
 		FlxG.state.add(textBox);
-		
+	}
+	
+	public function IsTextDone():Bool
+	{
+		return contText; 
 	}
 	
 	/**
@@ -67,6 +85,7 @@ class DialogueBox extends BaseSprite
 	{
 		textToDisplay = text;
 		timePerTick = spd;
+		trace(textBox.text);
 	}
 	
 	override public function update()
@@ -75,9 +94,15 @@ class DialogueBox extends BaseSprite
 		
 		if (Reg.keymanage.GetKeyPressed("Confirm"))
 		{
+			if (textToDisplay.length == displayIndex)
+			{
+				trace(textBox.text + " 2");
+				contText = true;
+			}
 			timePerTick = -1;
+			
 		}
-		if (timePerTick != -1)
+		if (timePerTick != -1 && displayIndex != textToDisplay.length)
 		{
 			textBox.text = textToDisplay.substr(0, displayIndex);
 			characterTimer += FlxG.elapsed;
@@ -89,6 +114,7 @@ class DialogueBox extends BaseSprite
 		}
 		else
 		{
+			displayIndex = textToDisplay.length;
 			textBox.text = textToDisplay;
 		}
 		
