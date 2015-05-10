@@ -30,18 +30,31 @@ class DialogueBox extends BaseSprite
 	
 	
 
-	public function new(X:Float, Y:Float, ?SimpleGraphic:Dynamic) 
+	public function new(X:Float, Y:Float, Width:Int, Height:Int ) 
 	{
-		super(X, Y, SimpleGraphic);
-		textBox = new FlxText(10, 100, 200, "", 14);
+		super(X, Y);
+		
+		var innerWid:Int = Width - 16;
+		var innerHt:Int = Height - 16;
+		if (Width > 128)
+		{
+			innerWid = Width - 128;
+		}
+		if (Height > 128)
+		{
+			innerHt= Height - 128;
+		}
+		
+		textBox = new FlxText(X - (innerWid/2), Y-(innerHt/2), 200, "", 14);
 		textBox.setBorderStyle(FlxText.BORDER_OUTLINE,0xf);
-		FlxG.state.add(textBox);
+		
 		timePerTick = 0;
 		characterTimer = 0;
 		displayIndex = 0;
 		
 		var nsl:NineSpliceFlxSprite = new NineSpliceFlxSprite("assets/images/nineslice", ".png");
-		nsl.ResizeSlices(600,300,[new FlxPoint(400,400),new FlxPoint(700,400),new FlxPoint(700,500),new FlxPoint(400,500)]);
+		nsl.ResizeSlices(Width, Height, new FlxPoint(X, Y));
+		FlxG.state.add(textBox);
 		
 	}
 	

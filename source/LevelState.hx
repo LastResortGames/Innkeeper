@@ -35,7 +35,7 @@ class LevelState extends FlxState
 		add(innDesk);
 		hero = new Hero(200, 180, AssetPaths.eightbitwoman__png);
 		//add(hero);
-		dialogOne = new DialogueBox(0, 0);
+		dialogOne = new DialogueBox(700, 500,500,200);
 		dialogOne.SetText("Hello World!", 300);
 	}
 	
