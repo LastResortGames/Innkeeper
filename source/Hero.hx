@@ -1,5 +1,7 @@
 package;
 
+import EnumReg;
+
 /**
  * ...
  * @author Last Resort Games
@@ -10,6 +12,8 @@ class Hero extends BaseSprite
 	public var inv:Inventory;
 	
 	public var convo:Conversation;
+	
+	public var QuestProgress:EnumValue;
 	
 	public function new(X:Float,Y:Float, ?SimpleGraphic:Dynamic)
 	{
