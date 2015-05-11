@@ -38,8 +38,10 @@ class LevelState extends FlxState
 		hero = new Hero(200, 180, AssetPaths.eightbitwoman__png);
 		//add(hero);
 		
-		var stat:HeroStatCard = new HeroStatCard(100, 100, 200, 100);
+		
+		
 	}
+	
 	
 	
 	

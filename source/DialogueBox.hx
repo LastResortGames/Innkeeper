@@ -46,18 +46,8 @@ class DialogueBox extends BaseSprite
 		}
 		if (Height > 64)
 		{
-			innerHt = Height - 46;
+			innerHt = Height - 64;
 			halfouter = 16;
-		}
-		if (Width > 128)
-		{
-			innerWid = Width - 128;
-			halfouter = 32;
-		}
-		if (Height > 128)
-		{
-			innerHt = Height - 128;
-			halfouter = 32;
 		}
 		if (Width > 128)
 		{
