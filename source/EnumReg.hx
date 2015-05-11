@@ -54,3 +54,21 @@ enum GameState
 	BATTLE;
 	CUTSCENE;
 }
+
+enum QuestState
+{
+	BEGINNING;
+	MIDDLE;
+	GRINDING;
+	FINALSTRETCH;
+}
+
+enum EquipmentState
+{
+	POOR;
+	GOOD;
+	GREAT;
+	EXCELLENT;
+	GODLY;
+	
+}

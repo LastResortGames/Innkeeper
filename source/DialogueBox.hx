@@ -39,6 +39,26 @@ class DialogueBox extends BaseSprite
 		var halfouter:Int = 8;
 		var innerWid:Int = Width - 16;
 		var innerHt:Int = Height - 16;
+		if (Width > 64)
+		{
+			innerWid = Width - 64;
+			halfouter = 16;
+		}
+		if (Height > 64)
+		{
+			innerHt = Height - 46;
+			halfouter = 16;
+		}
+		if (Width > 128)
+		{
+			innerWid = Width - 128;
+			halfouter = 32;
+		}
+		if (Height > 128)
+		{
+			innerHt = Height - 128;
+			halfouter = 32;
+		}
 		if (Width > 128)
 		{
 			innerWid = Width - 128;
