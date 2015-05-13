@@ -25,27 +25,36 @@ class InnPiece extends BaseSprite
 		doorOverlap = cast((doorOverlap * assetScale), Int);
 	}
 	
-	public function AddHallway(dir:Direction, hallway:Hallway)
-	{
-		
+	// needs to be refactored if we want hallways to go N/S or rooms to go E/W
+	public function AddInnPiece(dir:Direction, innPiece:InnPiece)
+	{	
 		switch(dir)
 		{
+			//hallway
 			case WEST:
-				hallway.x = x - (hallway.frameWidth * assetScale) + doorOverlap;
-				hallway.y = y + ((frameHeight * assetScale) / 2) - (hallway.frameHeight * assetScale) / 2;
-			case EAST:
-				hallway.x = x + (frameWidth * assetScale) - doorOverlap;
-				hallway.y = y + ((frameHeight * assetScale) / 2) - (hallway.frameHeight * assetScale) / 2;
-				hallway.angle = 180; // WARNING - rotating images hurts rendering performance, be wary
-			case NORTH:
+				innPiece.x = x - (innPiece.frameWidth * assetScale) + doorOverlap;
+				innPiece.y = y + ((frameHeight * assetScale) / 2) - (innPiece.frameHeight * assetScale) / 2;
 				
+			//hallway
+			case EAST:
+				innPiece.angle = 180; // WARNING - rotating images hurts rendering performance, be wary
+				innPiece.x = x + (frameWidth * assetScale) - doorOverlap;
+				innPiece.y = y + ((frameHeight * assetScale) / 2) - (innPiece.frameHeight * assetScale) / 2;
+			
+			//room
+			case NORTH:
+				innPiece.x = x + ((frameWidth * assetScale) / 2) - (innPiece.frameWidth * assetScale) / 2;
+				innPiece.y = y - (innPiece.frameHeight * assetScale) + doorOverlap;
+			
+			//room
 			case SOUTH:
+				innPiece.x = x + ((frameWidth * assetScale) / 2) - (innPiece.frameWidth * assetScale) / 2;
+				innPiece.y = y + (frameHeight * assetScale) - doorOverlap;
+				innPiece.angle = 180;
 				
 			default:
 				return;
 		}
-		
-		
 		
 	}
 	

@@ -55,23 +55,35 @@ class LevelState extends FlxState
 		//MouseEventManager.add(spr2, dostuff2);
 	}
 	
+	// using this to test inn piece placements
 	private function generateStartingInn()
 	{
-		BaseInn = new Inn(600, 50, AssetPaths.baseLobby__png);
+		BaseInn = new Inn(600, 100, AssetPaths.baseLobby__png);
 		
 		var firstHallway = new Hallway(AssetPaths.hallway__png);
-		BaseInn.AddHallway(Direction.EAST, firstHallway);
+		BaseInn.AddInnPiece(Direction.EAST, firstHallway);
 		
 		var secondHallway = new Hallway(AssetPaths.hallway__png);
-		firstHallway.AddHallway(Direction.EAST, secondHallway);
+		firstHallway.AddInnPiece(Direction.EAST, secondHallway);
 		
 		var thirdHallway = new Hallway(AssetPaths.hallway__png);
-		BaseInn.AddHallway(Direction.WEST, thirdHallway);
+		BaseInn.AddInnPiece(Direction.WEST, thirdHallway);
+		
+		var firstRoom = new Room(AssetPaths.fourBedRoom__png);
+		secondHallway.AddInnPiece(Direction.NORTH, firstRoom);
+		
+		var secondRoom = new Room(AssetPaths.threeBedRoom__png);
+		firstHallway.AddInnPiece(Direction.SOUTH, secondRoom);
 		
 		add(BaseInn);
 		add(firstHallway);
+		add(secondRoom);
+		
 		add(secondHallway);
+		add(firstRoom);
+		
 		add(thirdHallway);
+		
 		
 	}
 	

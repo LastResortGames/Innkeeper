@@ -13,9 +13,9 @@ class Room extends InnPiece
 	public var Quality:Int;
 	public var CostToRun:Int;
 
-	public function new(X:Float,Y:Float, ?SimpleGraphic:Dynamic) 
+	public function new( ?SimpleGraphic:Dynamic) 
 	{
-		super(X, Y, SimpleGraphic);
+		super(x, y, SimpleGraphic);
 	}
 	
 	public function SetRoomStats(numbed:Int, craft:Bool, qual:Int, cost:Int )
