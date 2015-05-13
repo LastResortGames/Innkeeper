@@ -33,7 +33,9 @@ class LevelState extends FlxState
 	override public function create():Void
 	{
 		super.create();
-		BaseInn = new Inn(10, 10);
+
+		generateStartingInn();
+		
 		innDesk = new FlxSprite(200, 200, AssetPaths.buttonDefault__png);
 		add(innDesk);
 		hero = new Hero(200, 180, AssetPaths.eightbitwoman__png);
@@ -51,6 +53,26 @@ class LevelState extends FlxState
 		//spr.updateHitbox();
 		
 		//MouseEventManager.add(spr2, dostuff2);
+	}
+	
+	private function generateStartingInn()
+	{
+		BaseInn = new Inn(600, 50, AssetPaths.baseLobby__png);
+		
+		var firstHallway = new Hallway(AssetPaths.hallway__png);
+		BaseInn.AddHallway(Direction.EAST, firstHallway);
+		
+		var secondHallway = new Hallway(AssetPaths.hallway__png);
+		firstHallway.AddHallway(Direction.EAST, secondHallway);
+		
+		var thirdHallway = new Hallway(AssetPaths.hallway__png);
+		BaseInn.AddHallway(Direction.WEST, thirdHallway);
+		
+		add(BaseInn);
+		add(firstHallway);
+		add(secondHallway);
+		add(thirdHallway);
+		
 	}
 	
 	public function dostuff(spr:FlxSprite)

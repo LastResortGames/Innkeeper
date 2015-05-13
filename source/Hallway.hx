@@ -6,10 +6,9 @@ package;
  */
 class Hallway extends InnPiece
 {
-
-	public function new(X:Float,Y:Float, ?SimpleGraphic:Dynamic) 
+	public function new(?SimpleGraphic:Dynamic) 
 	{
-		super(X, Y, SimpleGraphic);
+		super(x, y, SimpleGraphic);
 	}
 	
 }
