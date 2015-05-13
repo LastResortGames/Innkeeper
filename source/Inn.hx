@@ -15,7 +15,7 @@ class Inn extends InnPiece
 
 	public function new(X:Float,Y:Float, ?SimpleGraphic:Dynamic) 
 	{
-		super(x, y, SimpleGraphic);
+		super(X, Y, SimpleGraphic);
 		
 	}
 	
