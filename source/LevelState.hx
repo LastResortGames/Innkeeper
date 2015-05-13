@@ -14,6 +14,7 @@ import flixel.util.FlxMath;
 import EnumReg;
 import flixel.ui.FlxButton;
 import flixel.input.keyboard.FlxKey;
+import flixel.plugin.MouseEventManager;
 
 /**
  * ...
@@ -38,11 +39,29 @@ class LevelState extends FlxState
 		hero = new Hero(200, 180, AssetPaths.eightbitwoman__png);
 		//add(hero);
 		
+		var spr:FlxSprite = new FlxSprite(600, 40, AssetPaths.nineslice_2__png);
+		add(spr);
+		//var spr2:FlxSprite = new FlxSprite(600, 40, AssetPaths.nineslice_2__png);
+		//add(spr2);
 		
+		spr.setSize(64, 64);
+		spr.setGraphicSize(64, 64);
+		spr.updateHitbox();
+		MouseEventManager.add(spr, dostuff,null,null,null,false,true,false);
+		//spr.updateHitbox();
 		
+		//MouseEventManager.add(spr2, dostuff2);
 	}
 	
+	public function dostuff(spr:FlxSprite)
+	{
+		trace("clickhere");
+	}
 	
+	public function dostuff2(spr:FlxSprite)
+	{
+		trace("clickhere2");
+	}
 	
 	
 	

@@ -72,3 +72,19 @@ enum EquipmentState
 	GODLY;
 	
 }
+
+enum TimeState
+{
+	PRESLOT;
+	DURINGSLOT;
+	POSTSLOT;
+}
+
+enum TimeOfDayState
+{
+	MORNING;
+	AFTERNOON;
+	EVENING;
+	LATENIGHT;
+	
+}

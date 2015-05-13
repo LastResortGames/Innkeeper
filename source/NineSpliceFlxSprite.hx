@@ -5,6 +5,7 @@ import flixel.FlxSprite;
 import flixel.util.FlxPoint;
 import flixel.plugin.MouseEventManager;
 import flixel.util.FlxColor;
+import openfl.display.DisplayObjectContainer;
 
 /**
  * ...
@@ -79,12 +80,12 @@ class NineSpliceFlxSprite
 		
 		NineSliceGraphic[3].setGraphicSize(outerWidth, innerHeight);
 		NineSliceGraphic[5].setGraphicSize(outerWidth, innerHeight);
-		MoveSprite(center);
 		for (i in 0...9)
 		{
 			NineSliceGraphic[i].updateHitbox();
 		}
-		
+		MoveSprite(center);
+		//NineSliceGraphic[0].updateHitbox();
 		
 		
 	}
@@ -111,17 +112,20 @@ class NineSpliceFlxSprite
 		{
 			innerHeight= height - 128;
 		}
+		trace(innerWidth + "");
 		var outerWidth:Int = Std.int((width - innerWidth) / 2);
 		var outerHeight:Int = Std.int((height - innerHeight) / 2);
-		NineSliceGraphic[0].setPosition(center.x - (innerWidth/2) - (outerWidth/2), center.y - (innerHeight/2) - (outerHeight/2));
-		NineSliceGraphic[1].setPosition(center.x, center.y - (innerHeight/2) - (outerHeight/2));
-		NineSliceGraphic[2].setPosition(center.x + (innerWidth/2) + (outerWidth/2), center.y - (innerHeight/2) - (outerHeight/2));
-		NineSliceGraphic[3].setPosition(center.x - (innerWidth/2) - (outerWidth/2), center.y);
-		NineSliceGraphic[4].setPosition(center.x, center.y);
-		NineSliceGraphic[5].setPosition(center.x + (innerWidth/2) + (outerWidth/2), center.y);
-		NineSliceGraphic[6].setPosition(center.x- (innerWidth/2) - (outerWidth/2), center.y + (innerHeight/2) + (outerHeight/2));
-		NineSliceGraphic[7].setPosition(center.x, center.y + (innerHeight/2) + (outerHeight/2));
-		NineSliceGraphic[8].setPosition(center.x + (innerWidth / 2) + (outerWidth / 2), center.y + (innerHeight / 2) + (outerHeight / 2));
+		
+		
+		NineSliceGraphic[0].setPosition(center.x - (innerWidth / 2) - outerWidth, center.y - (innerHeight / 2) - outerHeight);	
+		NineSliceGraphic[1].setPosition(center.x - (innerWidth/2), center.y - (innerHeight/2) - outerHeight);
+		NineSliceGraphic[2].setPosition(center.x + (innerWidth/2), center.y - (innerHeight/2) - outerHeight);
+		NineSliceGraphic[3].setPosition(center.x - (innerWidth / 2) - outerWidth, center.y- (innerHeight / 2));
+		NineSliceGraphic[4].setPosition(center.x - (innerWidth/2), center.y- (innerHeight / 2));
+		NineSliceGraphic[5].setPosition(center.x + (innerWidth/2), center.y- (innerHeight / 2));
+		NineSliceGraphic[6].setPosition(center.x - (innerWidth / 2) - outerWidth, center.y + (innerHeight/2) );
+		NineSliceGraphic[7].setPosition(center.x - (innerWidth/2), center.y + (innerHeight/2));
+		NineSliceGraphic[8].setPosition(center.x + (innerWidth/2), center.y + (innerHeight / 2) );
 		
 	}
 	
@@ -129,7 +133,7 @@ class NineSpliceFlxSprite
 	{
 		for (i in 0...9)
 		{
-			MouseEventManager.add(NineSliceGraphic[i], GrabSprite,null,null,null,true);
+			MouseEventManager.add(NineSliceGraphic[i], GrabSprite, null, null, null, false, true, false);
 		}
 		
 	}
@@ -157,39 +161,14 @@ class NineSpliceFlxSprite
 	
 	public function GrabSprite(obj:FlxSprite)
 	{		
-		trace("hello" + obj.health);
 		if (mouseReleased)
 		{
 			clickedID = obj.health;
 			mousePosAtClick = new FlxPoint(FlxG.mouse.x, FlxG.mouse.y);
-			MouseCenterDiff = new FlxPoint(mousePosAtClick.x - Center.x, mousePosAtClick.y - Center.y);
+			MouseCenterDiff = new FlxPoint( Center.x - mousePosAtClick.x, Center.y - mousePosAtClick.y);
 			trace(MouseCenterDiff);
 			mouseReleased = false;
 		}
 	}
-	
-	public function DragSprite(obj:FlxSprite)
-	{
-		trace("drag" + obj.health);
-		if (!mouseReleased)
-		{
-			trace("howdy" + obj.health);
-			var newMouse:FlxPoint = new FlxPoint(FlxG.mouse.x, FlxG.mouse.y);
-			MoveSprite(new FlxPoint(MouseCenterDiff.x + newMouse.x, MouseCenterDiff.y + newMouse.y));
-		}
-	}
-	
-	public function ReleaseSprite(obj:FlxSprite)
-	{
-		if (clickedID == obj.health)
-		{
-			trace("hello2" + obj.health);
-			mouseReleased = true;
-		}
-	}
-	
-	
-	
-	
-	
+		
 }

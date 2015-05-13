@@ -27,7 +27,6 @@ class Hero extends BaseSprite
 		statCard = new HeroStatCard(200, 100, 256, 130);
 		statCard.SetStats("Girl", "2", GOOD.getName(), GRINDING.getName());
 		
-		
 	}
 	
 	
@@ -37,11 +36,11 @@ class Hero extends BaseSprite
 		super.update();
 		if (!clickset)
 		{
-			statCard.bgSprite.AddClickAndDragMouseEvents();
+			statCard.AddClickAndDragMouseEvents();
 			clickset = true;
 			
 		}
 		convo.update();
-		statCard.bgSprite.updateClickMovement();
+		statCard.update();
 	}
 }
