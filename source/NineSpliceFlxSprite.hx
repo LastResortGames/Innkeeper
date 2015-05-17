@@ -18,14 +18,14 @@ class NineSpliceFlxSprite
 	public var Width:Int;
 	public var Height:Int;
 	
-	public function new(imagePath:String, ext:String) 
+	public function new(imagePath:String) 
 	{
 		NineSliceGraphic = new Array<FlxSprite>();
 		for (i in 0...9)
 		{
 			var spr:FlxSprite;
 			spr = new FlxSprite(100 + ((i % 3) * 32), 100 + (Std.int((i / 3)) * 32));
-			spr.loadGraphic(imagePath + "_" + i + ext, false, 16, 16);
+			spr.loadGraphic(ArtReg.GetSpriteByID(imagePath,i), false, 16, 16);
 			spr.setGraphicSize(32, 32);
 			spr.health = i;
 			NineSliceGraphic.push(spr);

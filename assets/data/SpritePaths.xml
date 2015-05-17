@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<sprite name="default" value="" />
+	<sprite name="hero">
+		<option value="assets/images/eightbitwoman.png"/>
+		<option value="assets/images/eightbitman.png"/>
+		<option value="assets/images/guyAdventurer.png"/>		
+	</sprite>
+	<sprite name="desk" value="assets/images/desk.png"/>
+	<sprite name="room">
+		<option value="assets/images/roomBase.png"/>
+		<option value="assets/images/oneBedRoom.png"/>
+		<option value="assets/images/twoBedRoom.png"/>
+		<option value="assets/images/threeBedRoom.png"/>
+		<option value="assets/images/fourBedRoom.png"/>
+	</sprite>
+	<sprite name="savepoint" value="assets/images/savepoint.png"/>
+	<sprite name="hallway" value="assets/images/hallway.png"/>
+	<sprite name="lobby" value="assets/images/baseLobby.png"/>
+	
+	<sprite name="nineslice" >
+		<option value="assets/images/nineslice_0.png"/>
+		<option value="assets/images/nineslice_1.png"/>
+		<option value="assets/images/nineslice_2.png"/>
+		<option value="assets/images/nineslice_3.png"/>
+		<option value="assets/images/nineslice_4.png"/>
+		<option value="assets/images/nineslice_5.png"/>
+		<option value="assets/images/nineslice_6.png"/>
+		<option value="assets/images/nineslice_7.png"/>
+		<option value="assets/images/nineslice_8.png"/>
+	</sprite>
+</data>

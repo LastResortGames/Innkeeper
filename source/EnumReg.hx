@@ -4,6 +4,12 @@ package;
  * @author Last Resort Games
  */
 
+ enum Nothing
+ {
+	NOTHING;
+ }
+ 
+ 
 enum BattlePhase
 {
 	PREBATTLEACTION;

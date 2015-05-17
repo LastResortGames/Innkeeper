@@ -1,14 +1,15 @@
 package;
 
+
 /**
  * ...
  * @author Last Resort Games
  */
 class Hallway extends InnPiece
 {
-	public function new(?SimpleGraphic:Dynamic) 
+	public function new() 
 	{
-		super(x, y, SimpleGraphic);
+		super(x, y, ArtReg.GetSprite("hallway"));
 	}
 	
 }

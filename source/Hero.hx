@@ -16,9 +16,9 @@ class Hero extends BaseSprite
 	public var QuestProgress:EnumValue;
 	public var statCard:HeroStatCard;
 	
-	public function new(X:Float,Y:Float, ?SimpleGraphic:Dynamic)
+	public function new(X:Float,Y:Float)
 	{
-		super(x, y, SimpleGraphic);
+		super(x, y, ArtReg.GetRandomSprite("hero"));
 		inv = new Inventory();
 		convo= new Conversation(250, 800, 500, 200);
 		convo.AddDialog("This is a string of instantaneous text", -1);

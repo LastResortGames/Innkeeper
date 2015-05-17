@@ -22,7 +22,7 @@ class InnPiece extends BaseSprite
 		updateHitbox();
 		super.x = X;
 		super.y = Y;
-		doorOverlap = cast((doorOverlap * assetScale), Int);
+		doorOverlap = Std.int(doorOverlap * assetScale);
 	}
 	
 	// needs to be refactored if we want hallways to go N/S or rooms to go E/W

@@ -3,6 +3,7 @@ package;
 import flixel.FlxG;
 import EnumReg;
 import flixel.util.FlxPoint;
+import haxe.xml.Fast;
 import openfl.Assets;
 import StringTools;
 
@@ -21,13 +22,38 @@ class ReadInFile
 	public function new(name:String,goal:EnumValue) 
 	{
 		fName = name;
-		ReadFile();
+		//ReadFile();
+	}
+	
+	public function ReadXMLFile():Map<String,Array<String>>
+	{
+		var xml:Xml = Xml.parse(Assets.getText(fName));
+		var fastXml:Fast = new Fast(xml.firstElement());
+		var spriteText:Map<String, Array<String>> = new Map<String,Array<String>>();
+		for (spr in fastXml.nodes.sprite)
+		{
+			if (!spr.nodes.option.isEmpty())
+			{
+				spriteText.set(spr.att.name, []);
+				for (op in spr.nodes.option)
+				{
+					spriteText.get(spr.att.name).push(op.att.value);
+					trace(spriteText.get(spr.att.name).length);
+				}
+			}
+			else
+			{
+				spriteText.set(spr.att.name, [spr.att.value]);
+				trace(spr.att.value);
+			}
+		}
+		return spriteText;
 	}
 	
 	public function ReadFile()
 	{
 		var fileText:String = Assets.getText(fName);
-		fileText = StringTools.replace(fileFlash, "\r\n", "\r");
+		fileText = StringTools.replace(fileText, "\r\n", "\r");
 		var rows:Array<String> = SplitRows(fileText);
 		var lineNum:Int = 0;
 		
@@ -36,7 +62,7 @@ class ReadInFile
 		for(i in 1...rows.length)
 		{
 			var row:String = rows[i];
-			var columnList:Array<String> = SplitCols(line);
+			var columnList:Array<String> = SplitCols(row);
 			ReadColumnData(columnList);	
 			lineNum++;
 		}

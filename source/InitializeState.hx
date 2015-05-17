@@ -20,7 +20,8 @@ class InitializeState extends FlxState
 		Reg.keymanage.AddKey("Confirm", ["SPACE"]);
 		Reg.keymanage.AddKey("Test", ["R","T"]);
 		
-		
+		var read:ReadInFile = new ReadInFile(AssetPaths.SpritePaths__xml,NOTHING);
+		ArtReg.ArtMap = read.ReadXMLFile();
 		
 		//After initializing data switch to first Game State
 		FlxG.switchState(new MainMenuState());		

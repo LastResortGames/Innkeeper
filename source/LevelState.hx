@@ -36,43 +36,46 @@ class LevelState extends FlxState
 
 		generateStartingInn();
 		
-		innDesk = new FlxSprite(200, 200, AssetPaths.buttonDefault__png);
+		innDesk = new FlxSprite(200, 200, ArtReg.GetSprite("desk"));//; AssetPaths.buttonDefault__png);
 		add(innDesk);
-		hero = new Hero(200, 180, AssetPaths.eightbitwoman__png);
+		hero = new Hero(200, 180);
 		//add(hero);
 		
-		var spr:FlxSprite = new FlxSprite(600, 40, AssetPaths.nineslice_2__png);
+		var spr:FlxSprite = new FlxSprite(600, 40, ArtReg.GetSpriteByID("nineslice", 5));// AssetPaths.nineslice_2__png);
 		add(spr);
 		//var spr2:FlxSprite = new FlxSprite(600, 40, AssetPaths.nineslice_2__png);
 		//add(spr2);
 		
 		spr.setSize(64, 64);
 		spr.setGraphicSize(64, 64);
+		spr.setGraphicSize(64, 64);
 		spr.updateHitbox();
 		MouseEventManager.add(spr, dostuff,null,null,null,false,true,false);
 		//spr.updateHitbox();
 		
 		//MouseEventManager.add(spr2, dostuff2);
+		
+		
 	}
 	
 	// using this to test inn piece placements
 	private function generateStartingInn()
 	{
-		BaseInn = new Inn(600, 100, AssetPaths.baseLobby__png);
+		BaseInn = new Inn(600, 100, ArtReg.GetSprite("lobby"));// AssetPaths.baseLobby__png);
 		
-		var firstHallway = new Hallway(AssetPaths.hallway__png);
+		var firstHallway = new Hallway();
 		BaseInn.AddInnPiece(Direction.EAST, firstHallway);
 		
-		var secondHallway = new Hallway(AssetPaths.hallway__png);
+		var secondHallway = new Hallway();
 		firstHallway.AddInnPiece(Direction.EAST, secondHallway);
 		
-		var thirdHallway = new Hallway(AssetPaths.hallway__png);
+		var thirdHallway = new Hallway();
 		BaseInn.AddInnPiece(Direction.WEST, thirdHallway);
 		
-		var firstRoom = new Room(AssetPaths.fourBedRoom__png);
+		var firstRoom = new Room(ArtReg.GetSpriteByID("room", 4));// AssetPaths.fourBedRoom__png);
 		secondHallway.AddInnPiece(Direction.NORTH, firstRoom);
 		
-		var secondRoom = new Room(AssetPaths.threeBedRoom__png);
+		var secondRoom = new Room(ArtReg.GetSpriteByID("room", 3));
 		firstHallway.AddInnPiece(Direction.SOUTH, secondRoom);
 		
 		add(BaseInn);
