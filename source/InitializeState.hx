@@ -22,6 +22,7 @@ class InitializeState extends FlxState
 		
 		var read:ReadInFile = new ReadInFile(AssetPaths.SpritePaths__xml,NOTHING);
 		ArtReg.ArtMap = read.ReadXMLFile();
+		Reg.AvailableRooms = new Array<Room>();
 		
 		//After initializing data switch to first Game State
 		FlxG.switchState(new MainMenuState());		

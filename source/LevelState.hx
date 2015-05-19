@@ -37,6 +37,8 @@ class LevelState extends FlxState
 		generateStartingInn();
 		
 		innDesk = new FlxSprite(200, 200, ArtReg.GetSprite("desk"));//; AssetPaths.buttonDefault__png);
+		innDesk.scale.x = .35;
+		innDesk.scale.y = .35;
 		add(innDesk);
 		hero = new Hero(200, 180);
 		//add(hero);
@@ -55,13 +57,12 @@ class LevelState extends FlxState
 		
 		//MouseEventManager.add(spr2, dostuff2);
 		
-		
 	}
 	
 	// using this to test inn piece placements
 	private function generateStartingInn()
 	{
-		BaseInn = new Inn(600, 100, ArtReg.GetSprite("lobby"));// AssetPaths.baseLobby__png);
+		BaseInn = new Inn(600, 100, ArtReg.GetSprite("lobby"));
 		
 		var firstHallway = new Hallway();
 		BaseInn.AddInnPiece(Direction.EAST, firstHallway);
@@ -72,10 +73,12 @@ class LevelState extends FlxState
 		var thirdHallway = new Hallway();
 		BaseInn.AddInnPiece(Direction.WEST, thirdHallway);
 		
-		var firstRoom = new Room(ArtReg.GetSpriteByID("room", 4));// AssetPaths.fourBedRoom__png);
+		var firstRoom = new Room(ArtReg.GetSpriteByID("room", 4));
+		firstRoom.SetRoomStats(4, false, 2, 50);
 		secondHallway.AddInnPiece(Direction.NORTH, firstRoom);
 		
 		var secondRoom = new Room(ArtReg.GetSpriteByID("room", 3));
+		secondRoom.SetRoomStats(4, true, 4, 200);
 		firstHallway.AddInnPiece(Direction.SOUTH, secondRoom);
 		
 		add(BaseInn);
@@ -86,6 +89,8 @@ class LevelState extends FlxState
 		add(firstRoom);
 		
 		add(thirdHallway);
+		Reg.AvailableRooms.push(firstRoom);
+		Reg.AvailableRooms.push(secondRoom);
 		
 		
 	}

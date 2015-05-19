@@ -12,6 +12,8 @@ class Room extends InnPiece
 	public var CraftTable:Bool;
 	public var Quality:Int;
 	public var CostToRun:Int;
+	public var Occupied:Bool;
+	
 
 	public function new( ?SimpleGraphic:Dynamic) 
 	{

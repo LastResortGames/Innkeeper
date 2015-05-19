@@ -44,4 +44,6 @@ class Reg
 	public static var CurrentTimer:Float = 0;
 	
 	public static var keymanage:KeyboardManager;
+	
+	public static var AvailableRooms:Array<Room>;
 }

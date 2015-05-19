@@ -23,6 +23,23 @@ class Day
 	{
 		if (SlotState == PRESLOT)
 		{
+			var availableRooms:Int = Reg.AvailableRooms.length;
+			var AvgQuality:Float = 0;
+			for (i in 0...availableRooms)
+			{
+				AvgQuality += Reg.AvailableRooms[i].Quality;
+			}
+			AvgQuality = AvgQuality / availableRooms;
+			
+			var numGroups:Int = Std.int(Math.random() * Reg.AvailableRooms.length * 3);
+			var AvgLevels:Array<Int> = new Array<Int>();
+			for (i in 0...numGroups)
+			{
+				var AvgLevel:Int = Std.int(Math.random() * (99 * (AvgQuality / 5));
+				AvgLevels.push(AvgLevel);
+			}
+			
+			
 			//Generate All Heroes		
 			//based on Time of Day
 			//Put Heroes into a groups

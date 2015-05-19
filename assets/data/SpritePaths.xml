@@ -2,8 +2,8 @@
 <data>
 	<sprite name="default" value="" />
 	<sprite name="hero">
-		<option value="assets/images/eightbitwoman.png"/>
-		<option value="assets/images/eightbitman.png"/>
+		<option value="assets/images/EightBitWoman.png"/>
+		<option value="assets/images/EightBitMan.png"/>
 		<option value="assets/images/guyAdventurer.png"/>		
 	</sprite>
 	<sprite name="desk" value="assets/images/desk.png"/>
