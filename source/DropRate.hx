@@ -74,19 +74,42 @@ class DropRate
 						{
 							compPerc = FlxMath.lerp(PercentData[percIndex],PercentData[percIndex + 1], (level - tempMinPerc) / (rangeBetweenPercents));
 						}
-						trace("level: " + level + ". range: " + rangeBetweenPercents + ". perc: " + percIndex + ". compare: " +  compPerc);
+						
 						var rand:Float = Math.random() * 100;
-						if (rand > compPerc)
+						trace("level: " + level + ". range: " + rangeBetweenPercents + ". perc: " + percIndex + ". compare: " +  compPerc + ". rand: " + rand);
+						if (rand < compPerc)
 						{
 							return true;
 						}
-						return false;
 					}
 					
 					
 				case STAGGERED:
+					var percIndex:Int = 0;
+					var tempMinPerc:Float = PercentData[percIndex];
+					while (level < tempMinPerc)
+					{
+						percIndex++;
+						tempMinPerc = InputRange[percIndex];
+					}
+					var rand:Float = Math.random() * 100;
+					trace("level: " + level + ". perc: " + percIndex + ". compare: " +  PercentData[percIndex] + ". rand: " + rand);
+					if (rand < PercentData[percIndex])
+					{
+						return true;
+					}
+					return false;
+					
 					
 				case FLAT:
+					var percIndex:Int = 0;
+					var rand:Float = Math.random() * 100;
+					trace("level: " + level + ". perc: " + percIndex + ". compare: " +  PercentData[percIndex] + ". rand: " + rand);
+					if (rand < PercentData[percIndex])
+					{
+						return true;
+					}
+					return false;
 					
 			}
 		}
