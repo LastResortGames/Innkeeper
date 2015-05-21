@@ -9,6 +9,13 @@ package;
 	NOTHING;
  }
  
+ enum DropRateType
+ {
+	 RANGE;
+	 STAGGERED;
+	 FLAT;
+ }
+ 
  
 enum BattlePhase
 {

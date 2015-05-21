@@ -39,6 +39,61 @@ class Day
 				AvgLevels.push(AvgLevel);
 			}
 			
+			var GroupEquipment:Array<EnumValue> = new Array<EnumValue>();
+			
+			var poorEquipDrop:DropRate = new DropRate();
+			poorEquipDrop.MinLevel = 1;
+			poorEquipDrop.MaxLevel = 30;
+			poorEquipDrop.DropID = "Poor";
+			poorEquipDrop.DropType = RANGE;
+			poorEquipDrop.PercentData.push(100);
+			poorEquipDrop.PercentData.push(20);
+			
+			poorEquipDrop.IsDropped(27);
+			
+			var goodEquipDrop:DropRate = new DropRate();
+			goodEquipDrop.MinLevel = 10;
+			goodEquipDrop.MaxLevel = 30;
+			goodEquipDrop.DropID = "Good";
+			goodEquipDrop.DropType = RANGE;
+			goodEquipDrop.PercentData.push(80);
+			goodEquipDrop.PercentData.push(40);
+			
+			var greatEquipDrop:DropRate = new DropRate();
+			greatEquipDrop.MinLevel = 15;
+			greatEquipDrop.MaxLevel = 50;
+			greatEquipDrop.DropID = "Great";
+			greatEquipDrop.DropType = RANGE;
+			greatEquipDrop.PercentData.push(20);
+			greatEquipDrop.PercentData.push(100);
+			greatEquipDrop.PercentData.push(60);
+			
+			var excellentEquipDrop:DropRate = new DropRate();
+			excellentEquipDrop.MinLevel = 40;
+			excellentEquipDrop.MaxLevel = 80;
+			excellentEquipDrop.DropID = "Excellent";
+			excellentEquipDrop.DropType = RANGE;
+			excellentEquipDrop.PercentData.push(60);
+			excellentEquipDrop.PercentData.push(90);
+			excellentEquipDrop.PercentData.push(100);
+			
+			var godlyEquipDrop:DropRate = new DropRate();
+			godlyEquipDrop.MinLevel = 65;
+			godlyEquipDrop.MaxLevel = 99;
+			godlyEquipDrop.DropID = "Godly";
+			godlyEquipDrop.DropType = RANGE;
+			godlyEquipDrop.PercentData.push(35);
+			godlyEquipDrop.PercentData.push(100);
+			
+			var dropT:DropTable = new DropTable();
+			dropT.AddDrop(poorEquipDrop);
+			dropT.AddDrop(goodEquipDrop);
+			dropT.AddDrop(greatEquipDrop);
+			dropT.AddDrop(excellentEquipDrop);
+			dropT.AddDrop(godlyEquipDrop);
+			
+			dropT.GetDrop(27);
+			
 			
 			//Generate All Heroes		
 			//based on Time of Day

@@ -57,6 +57,20 @@ class LevelState extends FlxState
 		
 		//MouseEventManager.add(spr2, dostuff2);
 		
+		var poorEquipDrop:DropRate = new DropRate();
+			poorEquipDrop.MinLevel = 1;
+			poorEquipDrop.MaxLevel = 30;
+			poorEquipDrop.DropID = "Poor";
+			poorEquipDrop.DropType = RANGE;
+			poorEquipDrop.PercentData.push(10);
+			poorEquipDrop.PercentData.push(100);
+			poorEquipDrop.PercentData.push(40);
+			
+			for (i in 0...30)
+			{
+				poorEquipDrop.IsDropped(i);
+			}
+		
 	}
 	
 	// using this to test inn piece placements
