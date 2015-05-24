@@ -13,6 +13,8 @@ class Room extends InnPiece
 	public var Quality:Int;
 	public var CostToRun:Int;
 	public var Occupied:Bool;
+	public var FloorNum:String;
+	public var RoomNumber:String;
 	
 
 	public function new( ?SimpleGraphic:Dynamic) 
@@ -26,6 +28,10 @@ class Room extends InnPiece
 		CraftTable = craft;
 		Quality = qual;
 		CostToRun = cost;
+		FloorNum = "1";
+		Reg.AvailableRooms.push(this);
+		RoomNumber = FloorNum + (Reg.AvailableRooms.length >= 10 ? "" : "0" ) + Reg.AvailableRooms.length;
+		
 	}
 	
 	public function SetCrafting(craft:Bool)

@@ -9,6 +9,7 @@ class PriceDialogue extends DialogueBox
 {
 	
 	public var price:DialogueBox;
+	public var PriceDigits:Array<FlxText>;
 
 	public function new(X:Float, Y:Float, Width:Int, Height:Int) 
 	{

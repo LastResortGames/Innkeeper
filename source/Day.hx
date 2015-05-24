@@ -27,6 +27,10 @@ class Day
 	public var GroupBeingChecked:Int;
 	public var numGroups:Int;
 	
+	public var GroupCheckingIn:Bool;
+	
+	public var InnStats:InnStatCard;
+	
 	
 	public function new() 
 	{
@@ -34,7 +38,7 @@ class Day
 		GroupTimer = 0;
 		SlotTimer = 0;
 		//two minutes
-		CheckInTimer = 60;
+		CheckInTimer = 5;
 		//ten minutes
 		SlotTimer = 600;
 		AvgLevels = new Map<Int,Int>();
@@ -45,12 +49,15 @@ class Day
 		CameAndLeft = new Map<Int,Bool>();
 		Heroes = new Map<Int,Array<Hero>>();
 		GroupBeingChecked = -1;
+		GroupCheckingIn = false;
+		InnStats = new InnStatCard(800, 600,500,300);
 	}
 	
 	public function update()
 	{
 		if (SlotState == PRESLOT)
 		{
+			UpdateInnStats();
 			var availableRooms:Int = Reg.AvailableRooms.length;
 			var AvgQuality:Float = 0;
 			for (i in 0...availableRooms)
@@ -107,7 +114,7 @@ class Day
 		{
 			GroupTimer += FlxG.elapsed;
 			SlotTimer += FlxG.elapsed;
-			if (GroupTimer >= CheckInTimer)
+			if (GroupTimer >= CheckInTimer && !GroupCheckingIn)
 			{
 				GroupTimer = 0;
 				if (GroupBeingChecked == -1)
@@ -118,17 +125,21 @@ class Day
 				{
 					//end slot
 				}
-				else
+				else if(!GroupCheckingIn)
 				{
 					for (i in 0...Heroes.get(GroupBeingChecked).length)
 					{
 						Heroes.get(GroupBeingChecked)[i].ComeToDesk(700, 600 + (i*50));
 					}
-				}
-				
-				
-				
-				
+					GroupCheckingIn = true;
+					InnStats.AddRooms();
+			
+				}	
+			}
+			
+			if (GroupCheckingIn)
+			{
+				InnStats.update();
 			}
 			
 			
@@ -156,6 +167,12 @@ class Day
 		}
 		
 	}
+	
+	public function UpdateInnStats()
+	{
+		
+	}
+	
 	public function PickGroup()
 	{
 		var rand:Int = Std.int(Math.random() * numGroups);

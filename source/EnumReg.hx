@@ -82,8 +82,7 @@ enum EquipmentState
 	GOOD;
 	GREAT;
 	EXCELLENT;
-	GODLY;
-	
+	GODLY;	
 }
 
 enum TimeState

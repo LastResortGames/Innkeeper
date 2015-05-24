@@ -74,8 +74,7 @@ class LevelState extends FlxState
 		add(firstRoom);
 		
 		add(thirdHallway);
-		Reg.AvailableRooms.push(firstRoom);
-		Reg.AvailableRooms.push(secondRoom);
+		
 		
 		
 	}
