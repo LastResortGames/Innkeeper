@@ -16,17 +16,21 @@ class Hero extends BaseSprite
 	public var QuestProgress:EnumValue;
 	public var statCard:HeroStatCard;
 	
-	public function new(X:Float,Y:Float)
+	public function new(X:Float,Y:Float, name:String, lev:Int,eq:EnumValue,quest:EnumValue)
 	{
-		super(x, y, ArtReg.GetRandomSprite("hero"));
+		super(X,Y, ArtReg.GetRandomSprite("hero"));
 		inv = new Inventory();
 		convo= new Conversation(250, 800, 500, 200);
 		convo.AddDialog("This is a string of instantaneous text", -1);
 		convo.AddDialog("This is a string of slow text", 100);
-		convo.ContinueToNextDialogue();
-		statCard = new HeroStatCard(200, 100, 256, 130);
-		statCard.SetStats("Girl", "2", GOOD.getName(), GRINDING.getName());
+		statCard = new HeroStatCard(700, 600, 256, 130);
+		statCard.SetStats(name, lev +"", eq.getName(), quest.getName());
 		
+	}
+	public function ComeToDesk(X:Int,Y:Int)
+	{
+		statCard.AddToStage(X,Y);
+		statCard.AddClickAndDragMouseEvents();
 	}
 	
 	
@@ -36,7 +40,7 @@ class Hero extends BaseSprite
 		super.update();
 		if (!clickset)
 		{
-			statCard.AddClickAndDragMouseEvents();
+			
 			clickset = true;
 			
 		}

@@ -71,13 +71,11 @@ class DialogueBox extends BaseSprite
 	
 	public function RemoveTextFromScreen()
 	{
-		trace(textBox.text);
 		FlxG.state.remove(textBox, true);
 	}
 	
 	public function AddTextToScreen()
 	{
-		trace(textBox.text);
 		FlxG.state.add(textBox);
 	}
 	
@@ -95,7 +93,6 @@ class DialogueBox extends BaseSprite
 	{
 		textToDisplay = text;
 		timePerTick = spd;
-		trace(textBox.text);
 	}
 	
 	override public function update()
@@ -106,7 +103,6 @@ class DialogueBox extends BaseSprite
 		{
 			if (textToDisplay.length == displayIndex)
 			{
-				trace(textBox.text + " 2");
 				contText = true;
 			}
 			timePerTick = -1;

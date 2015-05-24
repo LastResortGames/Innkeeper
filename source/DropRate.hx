@@ -76,7 +76,6 @@ class DropRate
 						}
 						
 						var rand:Float = Math.random() * 100;
-						trace("level: " + level + ". range: " + rangeBetweenPercents + ". perc: " + percIndex + ". compare: " +  compPerc + ". rand: " + rand);
 						if (rand < compPerc)
 						{
 							return true;
@@ -93,7 +92,6 @@ class DropRate
 						tempMinPerc = InputRange[percIndex];
 					}
 					var rand:Float = Math.random() * 100;
-					trace("level: " + level + ". perc: " + percIndex + ". compare: " +  PercentData[percIndex] + ". rand: " + rand);
 					if (rand < PercentData[percIndex])
 					{
 						return true;

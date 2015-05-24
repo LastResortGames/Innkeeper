@@ -36,7 +36,7 @@ class Conversation
 	
 	public function update()
 	{
-		if(!NoMoreText)
+		if(!NoMoreText && CurrDialog != null)
 		{
 			CurrDialog.update();
 			if (CurrDialog.IsTextDone())
@@ -62,7 +62,6 @@ class Conversation
 		CurrDialog = Dialog.get(CurrDIndex);
 		if (CurrDialog != null)
 		{
-			trace("hello");
 			CurrDialog.AddTextToScreen();
 		}
 		else

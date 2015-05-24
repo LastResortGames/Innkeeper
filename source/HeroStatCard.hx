@@ -59,10 +59,22 @@ class HeroStatCard
 			halfouter = 32;
 		}		
 		TitleText = new FlxText(X - (innerWid/2) - halfouter, Y-(innerHt/2)- halfouter, width / 2, "Name:\nLevel:\nEquipment:\nProgress:",14);
-		FlxG.state.add(TitleText);
+		
 		
 		StatText = new FlxText(X - (innerWid/2) - halfouter + width / 2, Y-(innerHt/2)- halfouter, width / 2, "Name:\nLevel:\nEquipment:\nProgress:",14);
+		
+	}
+	
+	public function AddToStage(X:Int,Y:Int)
+	{
+		TitleText.x = X - (innerWid / 2) - halfouter;
+		TitleText.y = Y - (innerHt / 2) - halfouter;
+		StatText.x = X - (innerWid / 2) - halfouter + Width / 2;
+		StatText.y = Y - (innerHt / 2) - halfouter;
+		bgSprite.AddToStage(X,Y);
+		FlxG.state.add(TitleText);
 		FlxG.state.add(StatText);
+		
 	}
 	
 	public function AddClickAndDragMouseEvents()

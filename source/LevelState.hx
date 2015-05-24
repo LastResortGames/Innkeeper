@@ -28,49 +28,20 @@ class LevelState extends FlxState
 	public var hero:Hero;
 	public var dialogOne:DialogueBox;
 	public var con:Conversation;
-	
+	public var day:Day;
 	
 	override public function create():Void
 	{
 		super.create();
 
 		generateStartingInn();
-		
-		innDesk = new FlxSprite(200, 200, ArtReg.GetSprite("desk"));//; AssetPaths.buttonDefault__png);
+		innDesk = new FlxSprite(20, 700, ArtReg.GetSprite("desk"));
 		innDesk.scale.x = .35;
 		innDesk.scale.y = .35;
+		innDesk.updateHitbox();
 		add(innDesk);
-		hero = new Hero(200, 180);
-		//add(hero);
 		
-		var spr:FlxSprite = new FlxSprite(600, 40, ArtReg.GetSpriteByID("nineslice", 5));// AssetPaths.nineslice_2__png);
-		add(spr);
-		//var spr2:FlxSprite = new FlxSprite(600, 40, AssetPaths.nineslice_2__png);
-		//add(spr2);
-		
-		spr.setSize(64, 64);
-		spr.setGraphicSize(64, 64);
-		spr.setGraphicSize(64, 64);
-		spr.updateHitbox();
-		MouseEventManager.add(spr, dostuff,null,null,null,false,true,false);
-		//spr.updateHitbox();
-		
-		//MouseEventManager.add(spr2, dostuff2);
-		
-		var poorEquipDrop:DropRate = new DropRate();
-			poorEquipDrop.MinLevel = 1;
-			poorEquipDrop.MaxLevel = 30;
-			poorEquipDrop.DropID = "Poor";
-			poorEquipDrop.DropType = RANGE;
-			poorEquipDrop.PercentData.push(10);
-			poorEquipDrop.PercentData.push(100);
-			poorEquipDrop.PercentData.push(40);
-			
-			for (i in 0...30)
-			{
-				poorEquipDrop.IsDropped(i);
-			}
-		
+		day = new Day();
 	}
 	
 	// using this to test inn piece placements
@@ -125,7 +96,7 @@ class LevelState extends FlxState
 	override public function update():Void 
 	{
 		super.update();
-		hero.update();
+		day.update();
 	}
 	
 	

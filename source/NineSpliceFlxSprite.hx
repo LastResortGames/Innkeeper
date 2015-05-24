@@ -29,11 +29,19 @@ class NineSpliceFlxSprite
 			spr.setGraphicSize(32, 32);
 			spr.health = i;
 			NineSliceGraphic.push(spr);
-			FlxG.state.add(spr);
 		}
 		Width = 0;
 		Height = 0;
 		mouseReleased = true;
+	}
+	
+	public function AddToStage(X:Int,Y:Int)
+	{
+		ResizeSlices(Width, Height, new FlxPoint(X, Y));
+		for (i in 0...9)
+		{
+			FlxG.state.add(NineSliceGraphic[i]);
+		}
 	}
 	
 	/**
@@ -112,7 +120,6 @@ class NineSpliceFlxSprite
 		{
 			innerHeight= height - 128;
 		}
-		trace(innerWidth + "");
 		var outerWidth:Int = Std.int((width - innerWidth) / 2);
 		var outerHeight:Int = Std.int((height - innerHeight) / 2);
 		
@@ -131,6 +138,7 @@ class NineSpliceFlxSprite
 	
 	public function AddClickAndDragMouseEvents()
 	{
+		
 		for (i in 0...9)
 		{
 			MouseEventManager.add(NineSliceGraphic[i], GrabSprite, null, null, null, false, true, false);
@@ -166,7 +174,6 @@ class NineSpliceFlxSprite
 			clickedID = obj.health;
 			mousePosAtClick = new FlxPoint(FlxG.mouse.x, FlxG.mouse.y);
 			MouseCenterDiff = new FlxPoint( Center.x - mousePosAtClick.x, Center.y - mousePosAtClick.y);
-			trace(MouseCenterDiff);
 			mouseReleased = false;
 		}
 	}

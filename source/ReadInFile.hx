@@ -38,13 +38,11 @@ class ReadInFile
 				for (op in spr.nodes.option)
 				{
 					spriteText.get(spr.att.name).push(op.att.value);
-					trace(spriteText.get(spr.att.name).length);
 				}
 			}
 			else
 			{
 				spriteText.set(spr.att.name, [spr.att.value]);
-				trace(spr.att.value);
 			}
 		}
 		return spriteText;

@@ -19,13 +19,31 @@ class DropTable
 		Drops.push(drop);
 	}
 	
-	public function GetDrop(level:Int)
+	public function GetAllDrops(level:Int):Array<String>
 	{
 		var DropIDList:Array<String> = new Array<String>();
 		for (i in 0...Drops.length)
 		{
-			
+			if (Drops[i].IsDropped(level))
+			{
+				DropIDList.push(Drops[i].DropID);
+			}
 		}
+		return DropIDList;
+	}
+	
+	public function GetOneDrop(level:Int):String
+	{
+		var DropIDList:Array<String> = new Array<String>();
+		for (i in 0...Drops.length)
+		{
+			if (Drops[i].IsDropped(level))
+			{
+				DropIDList.push(Drops[i].DropID);
+			}
+		}
+		var rand:Int = Std.int(Math.random() * DropIDList.length);
+		return DropIDList[rand];
 	}
 	
 }
