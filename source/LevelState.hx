@@ -23,7 +23,7 @@ import flixel.plugin.MouseEventManager;
 class LevelState extends FlxState
 {
 	
-	public var BaseInn:Inn;
+	public var baseInn:Inn;
 	public var innDesk:FlxSprite;
 	public var hero:Hero;
 	public var dialogOne:DialogueBox;
@@ -46,37 +46,65 @@ class LevelState extends FlxState
 	
 	// using this to test inn piece placements
 	private function generateStartingInn()
+	{	
+		baseInn = new Inn(600, 100, ArtReg.GetSprite("lobby"));
+		add(baseInn);
+		
+		addHallway(Direction.EAST, baseInn);
+		addHallway(Direction.EAST, baseInn.pieces.get(Direction.EAST));
+		addRoom(Direction.NORTH, baseInn.pieces.get(Direction.EAST), 4, false, 2, 50);
+		
+		var secondHallway = ((baseInn.pieces.get(Direction.EAST)).pieces).get(Direction.EAST);
+		addRoom(Direction.SOUTH, secondHallway, 3, true, 4, 200);
+	}
+	
+	public function addHallway(dir:Direction, parent:InnPiece)
 	{
-		BaseInn = new Inn(600, 100, ArtReg.GetSprite("lobby"));
+		var hallway = new Hallway();
+		parent.addNewPiece(dir, hallway);
+		add(hallway);
+	}
+	
+	public function addRoom(dir:Direction, parent:InnPiece, numBeds:Int, craft:Bool, qual:Int, cost:Int)
+	{
+		var room = new Room(ArtReg.GetSpriteByID("room", numBeds));
+		parent.addNewPiece(dir, room);
 		
-		var firstHallway = new Hallway();
-		BaseInn.AddInnPiece(Direction.EAST, firstHallway);
+		// create the door
+		var door = createDoor(dir, room);
 		
-		var secondHallway = new Hallway();
-		firstHallway.AddInnPiece(Direction.EAST, secondHallway);
+		// set the room stats and we're in business!
+		room.SetRoomStats(numBeds, craft, qual, cost);
 		
-		var thirdHallway = new Hallway();
-		BaseInn.AddInnPiece(Direction.WEST, thirdHallway);
+		// add the new pieces
+		add(room);
+		add(door);
 		
-		var firstRoom = new Room(ArtReg.GetSpriteByID("room", 4));
-		firstRoom.SetRoomStats(4, false, 2, 50);
-		secondHallway.AddInnPiece(Direction.NORTH, firstRoom);
+		Reg.AvailableRooms.push(room);
+	}
+	
+	private function createDoor(dir:Direction, room:InnPiece):FlxSprite
+	{
+		var door = new FlxSprite(0, 0, ArtReg.GetSprite("door"));
+		door.scale.x = room.assetScale;
+		door.scale.y = room.assetScale;
+		door.updateHitbox();
 		
-		var secondRoom = new Room(ArtReg.GetSpriteByID("room", 3));
-		secondRoom.SetRoomStats(4, true, 4, 200);
-		firstHallway.AddInnPiece(Direction.SOUTH, secondRoom);
+		switch(dir)
+		{
+			case NORTH:
+				door.x = room.x + ((room.frameWidth * room.assetScale) / 2) - (door.frameWidth * room.assetScale) / 2;
+				door.y = room.y + (room.frameHeight * room.assetScale) - (door.frameHeight * room.assetScale) / 2;
+			
+			case SOUTH:
+				door.x = room.x + ((room.frameWidth * room.assetScale) / 2) - (door.frameWidth * room.assetScale) / 2;
+				door.y = room.y - (door.frameHeight * room.assetScale) / 2;
+				
+			default:
+				return door;
+		}
 		
-		add(BaseInn);
-		add(firstHallway);
-		add(secondRoom);
-		
-		add(secondHallway);
-		add(firstRoom);
-		
-		add(thirdHallway);
-		
-		
-		
+		return door;
 	}
 	
 	public function dostuff(spr:FlxSprite)
@@ -88,9 +116,6 @@ class LevelState extends FlxState
 	{
 		trace("clickhere2");
 	}
-	
-	
-	
 	
 	override public function update():Void 
 	{
