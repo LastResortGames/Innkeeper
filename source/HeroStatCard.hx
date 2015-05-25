@@ -29,7 +29,7 @@ class HeroStatCard
 	public var Width:Int;
 	public var Height:Int;
 	
-	public function new(X:Float, Y:Float, width:Int, height:Int) 
+	public function new(X:Float, Y:Float, width:Int, height:Int)
 	{		
 		bgSprite = new NineSpliceFlxSprite("nineslice");
 		bgSprite.ResizeSlices(width, height, new FlxPoint(X, Y));

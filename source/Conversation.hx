@@ -29,8 +29,6 @@ class Conversation
 		WdHt = new FlxPoint(Width, Height);
 		numDialog = 0;
 		CurrDIndex = 0;
-		nsl = new NineSpliceFlxSprite("nineslice");
-		nsl.ResizeSlices(Width, Height, new FlxPoint(X, Y));
 		
 	}
 	

@@ -30,15 +30,24 @@ class DialogueBox extends BaseSprite
 	
 	public var contText:Bool;
 	
+	public var halfouter:Int;
+	public var innerWid:Int;
+	public var innerHt:Int;
+	public var Width:Int;
+	public var Height:Int;
+	public var Center:FlxPoint;
 	
+	public var nsl:NineSpliceFlxSprite;
 
-	public function new(X:Float, Y:Float, Width:Int, Height:Int ) 
+	public function new(X:Float, Y:Float, width:Int, height:Int ) 
 	{
 		super(X, Y);
-		
-		var halfouter:Int = 8;
-		var innerWid:Int = Width - 16;
-		var innerHt:Int = Height - 16;
+		Center = new FlxPoint(X, Y);
+		Width = width;
+		Height = height;
+		halfouter = 8;
+		innerWid = width - 16;
+		innerHt = height - 16;
 		if (Width > 64)
 		{
 			innerWid = Width - 64;
@@ -58,9 +67,11 @@ class DialogueBox extends BaseSprite
 		{
 			innerHt = Height - 128;
 			halfouter = 32;
-		}		
+		}
 		
 		textBox = new FlxText(X - (innerWid/2) - halfouter, Y-(innerHt/2)- halfouter, innerWid + (halfouter * 2), "", 20);
+		nsl = new NineSpliceFlxSprite("nineslice");
+		nsl.ResizeSlices(Width, Height, new FlxPoint(X, Y));
 		
 		timePerTick = 0;
 		characterTimer = 0;
