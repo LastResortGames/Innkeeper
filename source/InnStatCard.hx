@@ -4,6 +4,7 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxPoint;
 import flixel.FlxG;
+import flixel.plugin.MouseEventManager;
 
 /**
  * ...
@@ -46,14 +47,15 @@ class InnStatCard
 			var roomCraftTxt:FlxText = new FlxText(Center.x - Width / 5 + 3 * roomstatSpacing, Center.y - Height / 3 + (i * 30), Width , "", 12);
 			var roomTemp = Reg.AvailableRooms[i];
 			var roomOccupiedTxt:FlxText = null;
-			var roomOccupiedButton:FlxButton = null;
+			var roomOccupiedButton:RoomSelectButton = null;
 			if (roomTemp.Occupied)
 			{
 				 roomOccupiedTxt= new FlxText(Center.x - Width / 5 + 4 * roomstatSpacing, Center.y - Height / 3 + (i * 30), Width , "", 12);
 			}
 			else
 			{
-				roomOccupiedButton = new FlxButton(Center.x - Width / 5 + 4 * roomstatSpacing, Center.y - Height / 3 + (i * 30), "Offer Room",CheckInHeroes);
+				roomOccupiedButton = new RoomSelectButton(Center.x - Width / 5 + 4 * roomstatSpacing, Center.y - Height / 3 + (i * 30), "Offer Room");
+				roomOccupiedButton.setOnUp();
 			}
 			roomNumTxt.text = AddSpaceToDetails(roomTemp.RoomNumber);
 			roomQualTxt.text = AddSpaceToDetails(roomTemp.Quality + ""); 
@@ -90,9 +92,10 @@ class InnStatCard
 		logSprite.AddClickAndDragMouseEvents();
 	}
 	
-	public function CheckInHeroes()
+	public function CheckInHeroes(spr:FlxButton)
 	{
-		var roomid:Int = RoomOccupancy.lastIndexOf();
+		trace("hello");
+		var roomid:Int = RoomOccupancy.lastIndexOf(spr);
 		trace(roomid);
 	}
 	
