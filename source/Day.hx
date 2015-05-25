@@ -31,6 +31,8 @@ class Day
 	
 	public var InnStats:InnStatCard;
 	
+	public var FinalPriceOffer:SelectionDialogue;
+	
 	
 	public function new() 
 	{
@@ -139,12 +141,20 @@ class Day
 			
 			if (GroupCheckingIn)
 			{
-				InnStats.update();
+				if (Reg.RoomChosen)
+				{
+					trace("roomchosen" + Reg.ChosenRoom);
+					//Start price selection dialogue
+					if (Reg.PriceChosen)
+					{
+						
+					}
+				}
+				else
+				{
+					InnStats.update();
+				}
 			}
-			
-			
-			
-			
 			
 			if (SlotTimer > SlotMaxTimer)
 			{
@@ -164,8 +174,7 @@ class Day
 		else if (SlotState == POSTSLOT)
 		{
 			//Just in case?
-		}
-		
+		}		
 	}
 	
 	public function UpdateInnStats()

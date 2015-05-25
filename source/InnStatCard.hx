@@ -15,13 +15,13 @@ class InnStatCard
 	
 	public var RoomStats:Array<Array<FlxText>>;
 	public var RoomOccupancy:Array<FlxButton>;
-	public var StatTitles:FlxText;
+	public var StatTitles:Array<FlxText>;
 	public var logSprite:NineSpliceFlxSprite;
 	public var Width:Int;
 	public var Height:Int;
 	public var Center:FlxPoint;
 	
-	public var roomstatSpacing = 65;
+	public var roomstatSpacing = 75;
 
 	public function new(X:Float, Y:Float, width:Int, height:Int) 
 	{
@@ -32,13 +32,27 @@ class InnStatCard
 		Center = new FlxPoint(X, Y);
 		logSprite = new NineSpliceFlxSprite("nineslice");
 		logSprite.ResizeSlices(width, height, Center);
-		StatTitles = new FlxText(Center.x - Width / 5, Center.y - Height / 2 + (20), Width, "", 12);
-		StatTitles.text = "Room # | Quality | # Beds | Crafting | Occupied";
+		StatTitles = new Array<FlxText>();
 	}
 	
 	public function AddRooms()
 	{
 		logSprite.AddToStage(Std.int(Center.x), Std.int(Center.y));
+		var roomNumTitle:FlxText = new FlxText(Center.x - Width / 5 + 0 * roomstatSpacing, Center.y - Height / 2 + (20), Width ,      "Room #  |  ", 12);
+		var roomQualTitle:FlxText = new FlxText(Center.x - Width / 5 + 1 * roomstatSpacing, Center.y - Height / 2 + (20), Width ,     "Quality  | ", 12);
+		var roomBedsTitle:FlxText = new FlxText(Center.x - Width / 5 + 2 * roomstatSpacing, Center.y - Height / 2 + (20), Width ,     " # Beds  | ", 12);
+		var roomCraftTitle:FlxText = new FlxText(Center.x - Width / 5 + 3 * roomstatSpacing, Center.y - Height / 2 + (20), Width ,    "Crafting | ", 12);
+		var roomOccupiedTitle:FlxText = new FlxText(Center.x - Width / 5 + 4 * roomstatSpacing, Center.y - Height / 2 + (20), Width , " Occupied  ", 12);
+		StatTitles.push(roomNumTitle);
+		StatTitles.push(roomQualTitle);
+		StatTitles.push(roomBedsTitle);
+		StatTitles.push(roomCraftTitle);
+		StatTitles.push(roomOccupiedTitle);
+		FlxG.state.add(roomNumTitle);
+		FlxG.state.add(roomQualTitle);
+		FlxG.state.add(roomBedsTitle);
+		FlxG.state.add(roomCraftTitle);
+		FlxG.state.add(roomOccupiedTitle);
 		for (i in 0...Reg.AvailableRooms.length)
 		{
 			var roomNumTxt:FlxText = new FlxText(Center.x - Width / 5 + 0 * roomstatSpacing, Center.y - Height / 3 + (i * 30), Width , "", 12);
@@ -47,15 +61,16 @@ class InnStatCard
 			var roomCraftTxt:FlxText = new FlxText(Center.x - Width / 5 + 3 * roomstatSpacing, Center.y - Height / 3 + (i * 30), Width , "", 12);
 			var roomTemp = Reg.AvailableRooms[i];
 			var roomOccupiedTxt:FlxText = null;
-			var roomOccupiedButton:RoomSelectButton = null;
+			var roomOccupiedButton:DataFlxButton = null;
 			if (roomTemp.Occupied)
 			{
 				 roomOccupiedTxt= new FlxText(Center.x - Width / 5 + 4 * roomstatSpacing, Center.y - Height / 3 + (i * 30), Width , "", 12);
 			}
 			else
 			{
-				roomOccupiedButton = new RoomSelectButton(Center.x - Width / 5 + 4 * roomstatSpacing, Center.y - Height / 3 + (i * 30), "Offer Room");
-				roomOccupiedButton.setOnUp();
+				roomOccupiedButton = new DataFlxButton(Center.x - Width / 5 + 4 * roomstatSpacing, Center.y - Height / 3 + (i * 30), "Offer Room");
+				roomOccupiedButton.DataID = i;
+				roomOccupiedButton.onUp.callback = roomOccupiedButton.CheckHeroesIn;
 			}
 			roomNumTxt.text = AddSpaceToDetails(roomTemp.RoomNumber);
 			roomQualTxt.text = AddSpaceToDetails(roomTemp.Quality + ""); 
@@ -88,16 +103,11 @@ class InnStatCard
 				RoomOccupancy.push(null);
 			}	
 		}
-		FlxG.state.add(StatTitles);
+		//FlxG.state.add(StatTitles);
 		logSprite.AddClickAndDragMouseEvents();
 	}
 	
-	public function CheckInHeroes(spr:FlxButton)
-	{
-		trace("hello");
-		var roomid:Int = RoomOccupancy.lastIndexOf(spr);
-		trace(roomid);
-	}
+	
 	
 	public function AddSpaceToDetails(str:String)
 	{
@@ -123,7 +133,10 @@ class InnStatCard
 				RoomOccupancy[i].setPosition(logSprite.Center.x - Width / 5 + 4 * roomstatSpacing, logSprite.Center.y - Height / 3 + (i * 30));
 			}
 		}
-		StatTitles.setPosition(logSprite.Center.x - Width / 5, logSprite.Center.y - Height / 2 + (20));
+		for (i in 0...StatTitles.length)
+		{
+			StatTitles[i].setPosition(logSprite.Center.x - Width / 5 + i * roomstatSpacing, logSprite.Center.y - Height / 2 + (20));
+		}
 	}
 	
 }

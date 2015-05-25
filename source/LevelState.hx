@@ -80,7 +80,6 @@ class LevelState extends FlxState
 		add(room);
 		add(door);
 		
-		Reg.AvailableRooms.push(room);
 	}
 	
 	private function createDoor(dir:Direction, room:InnPiece):FlxSprite
