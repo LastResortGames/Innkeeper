@@ -2,9 +2,16 @@
 <data>
 	<sprite name="default" value="" />
 	<sprite name="hero">
-		<option value="assets/images/EightBitWoman.png"/>
-		<option value="assets/images/EightBitMan.png"/>
-		<option value="assets/images/guyAdventurer.png"/>		
+		<option value="assets/images/eightBitWoman.png"/>
+		<option value="assets/images/eightBitMan.png"/>
+		<option value="assets/images/guyAdventurer.png"/>
+		<option value="assets/images/ladyAdventurer.png"/>
+	</sprite>
+	<sprite name ="heroMini">
+		<option value="assets/images/eightBitWomanMini.png"/>
+		<option value="assets/images/eightBitManMini.png"/>
+		<option value="assets/images/guyAdventurerMini.png"/>
+		<option value="assets/images/ladyAdventurerMini.png"/>
 	</sprite>
 	<sprite name="desk" value="assets/images/desk.png"/>
 	<sprite name="door">

@@ -106,9 +106,7 @@ class InnStatCard
 		//FlxG.state.add(StatTitles);
 		logSprite.AddClickAndDragMouseEvents();
 	}
-	
-	
-	
+
 	public function AddSpaceToDetails(str:String)
 	{
 		var spaces:String = "";
