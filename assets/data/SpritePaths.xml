@@ -7,6 +7,9 @@
 		<option value="assets/images/guyAdventurer.png"/>		
 	</sprite>
 	<sprite name="desk" value="assets/images/desk.png"/>
+	<sprite name="door">
+		<option value="assets/images/door.png"/>
+	</sprite>
 	<sprite name="room">
 		<option value="assets/images/roomBase.png"/>
 		<option value="assets/images/oneBedRoom.png"/>
