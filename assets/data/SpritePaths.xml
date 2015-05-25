@@ -39,4 +39,12 @@
 		<option value="assets/images/nineslice_7.png"/>
 		<option value="assets/images/nineslice_8.png"/>
 	</sprite>
+	<sprite name="border">
+		<option value="assets/images/borderCorner_0.png"/>
+		<option value="assets/images/borderCorner_1.png"/>
+		<option value="assets/images/borderCorner_2.png"/>
+		<option value="assets/images/borderCorner_3.png"/>
+		<option value="assets/images/borderHorizontal.png"/>
+		<option value="assets/images/borderVertical.png"/>
+	</sprite>
 </data>

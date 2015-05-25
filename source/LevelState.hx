@@ -30,10 +30,16 @@ class LevelState extends FlxState
 	public var con:Conversation;
 	public var day:Day;
 	
+	public var topBorder:Border;
+	public var leftBorder:Border;
+	public var rightBorder:Border;
+	
 	override public function create():Void
 	{
 		super.create();
-
+		topBorder = new Border(800, 200, 1600, 375, "border");
+		leftBorder = new Border(250, 650, 500, 475, "border");
+		rightBorder = new Border(1050, 650, 1100, 475, "border");
 		generateStartingInn();
 		innDesk = new FlxSprite(20, 700, ArtReg.GetSprite("desk"));
 		innDesk.scale.x = .35;
@@ -78,8 +84,7 @@ class LevelState extends FlxState
 		
 		// add the new pieces
 		add(room);
-		add(door);
-		
+		add(door);		
 	}
 	
 	private function createDoor(dir:Direction, room:InnPiece):FlxSprite
