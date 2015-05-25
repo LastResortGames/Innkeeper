@@ -92,8 +92,8 @@ class InnStatCard
 	
 	public function CheckInHeroes()
 	{
-		var roomid:Int = RoomOccupancy.lastIndexOf();
-		trace(roomid);
+		//var roomid:Int = RoomOccupancy.lastIndexOf();
+		//trace(roomid);
 	}
 	
 	public function AddSpaceToDetails(str:String)
