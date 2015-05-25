@@ -52,7 +52,20 @@ class Day
 		Heroes = new Map<Int,Array<Hero>>();
 		GroupBeingChecked = -1;
 		GroupCheckingIn = false;
-		InnStats = new InnStatCard(800, 600,500,300);
+		InnStats = new InnStatCard(800, 600, 500, 300);
+		
+		FinalPriceOffer = new SelectionDialogue(600, 600, 300, 150);
+		var yesOption:DataFlxButton = new DataFlxButton();
+		var noOption:DataFlxButton = new DataFlxButton();
+		yesOption.text = "Make Offer";
+		noOption.text = "Change Offer";
+		yesOption.onUp.callback = yesOption.AcceptChosenPrice;
+		noOption.onUp.callback = noOption.RejectChosenPrice;
+		var options:Array<DataFlxButton> = new Array<DataFlxButton>();
+		options.push(yesOption);
+		options.push(noOption);
+		FinalPriceOffer.SetOptions(options);
+		
 	}
 	
 	public function update()
@@ -127,7 +140,7 @@ class Day
 				{
 					//end slot
 				}
-				else if(!GroupCheckingIn)
+				else if(!GroupCheckingIn && Heroes.get(GroupBeingChecked) != null)
 				{
 					for (i in 0...Heroes.get(GroupBeingChecked).length)
 					{
@@ -143,11 +156,18 @@ class Day
 			{
 				if (Reg.RoomChosen)
 				{
-					trace("roomchosen" + Reg.ChosenRoom);
+					trace("room");
+					if (Reg.keymanage.GetKeyPressed("Confirm"))
+					{
+						Reg.PriceChosen = true;
+						Reg.RoomPrice = 100;
+					}
 					//Start price selection dialogue
 					if (Reg.PriceChosen)
 					{
-						
+						FinalPriceOffer.SetText("Would you like to stay the night at " + Reg.RoomPrice + "?", -1);
+						FinalPriceOffer.textBox.size = 12;
+						FinalPriceOffer.ShowDialog();
 					}
 				}
 				else

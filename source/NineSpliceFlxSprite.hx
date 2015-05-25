@@ -35,7 +35,7 @@ class NineSpliceFlxSprite
 		mouseReleased = true;
 	}
 	
-	public function AddToStage(X:Int,Y:Int)
+	public function AddToStage(X:Float,Y:Float)
 	{
 		ResizeSlices(Width, Height, new FlxPoint(X, Y));
 		for (i in 0...9)
