@@ -33,6 +33,12 @@ class Hero extends BaseSprite
 		statCard.AddClickAndDragMouseEvents();
 	}
 	
+	public function FinishCheckIn()
+	{
+		statCard.RemoveFromStage();
+		statCard.RemoveMouseEvents();
+	}
+	
 	
 	public var clickset:Bool;
 	override function update() 

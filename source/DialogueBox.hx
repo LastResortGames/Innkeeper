@@ -37,11 +37,14 @@ class DialogueBox extends BaseSprite
 	public var Height:Int;
 	public var Center:FlxPoint;
 	
+	public var DialogShown:Bool;
+	
 	public var nsl:NineSpliceFlxSprite;
 
 	public function new(X:Float, Y:Float, width:Int, height:Int ) 
 	{
 		super(X, Y);
+		DialogShown = false;
 		Center = new FlxPoint(X, Y);
 		Width = width;
 		Height = height;

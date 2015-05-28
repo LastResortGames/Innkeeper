@@ -11,6 +11,7 @@ class SelectionDialogue extends DialogueBox
 	
 	public var Options:Array<DataFlxButton>;
 	
+	
 	public function new(X:Float, Y:Float, Width:Int, Height:Int)
 	{
 		super(X, Y, Width, Height);
@@ -24,12 +25,24 @@ class SelectionDialogue extends DialogueBox
 	
 	public function ShowDialog()
 	{
+		DialogShown = true;
 		nsl.AddToStage(Center.x, Center.y);
 		AddTextToScreen();
 		for (i in 0...Options.length)
 		{
 			Options[i].setPosition(Center.x - (innerWid / 2) - halfouter + (i * innerWid), Center.y - (innerHt / 2) - halfouter + halfouter);
 			FlxG.state.add(Options[i]);
+		}
+	}
+	
+	public function HideDialog()
+	{
+		DialogShown = false;
+		nsl.RemoveFromStage();
+		RemoveTextFromScreen();
+		for (i in 0...Options.length)
+		{
+			FlxG.state.remove(Options[i]);
 		}
 	}
 	

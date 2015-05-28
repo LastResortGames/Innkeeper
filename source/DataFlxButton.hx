@@ -33,12 +33,13 @@ class DataFlxButton extends FlxButton
 	
 	public function RejectChosenPrice()
 	{
+		Reg.PriceChosen = false;
 		
 	}
 	
 	public function AcceptChosenPrice()
 	{
-		
+		Reg.PriceAccepted = true;
 	}
 	
 	

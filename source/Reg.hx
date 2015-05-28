@@ -48,6 +48,7 @@ class Reg
 	public static var AvailableRooms:Array<Room>;
 	public static var RoomChosen:Bool;
 	public static var PriceChosen:Bool;
+	public static var PriceAccepted:Bool;
 	public static var ChosenRoom:Int;
 	public static var RoomPrice:Int;
 	

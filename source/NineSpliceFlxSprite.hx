@@ -44,6 +44,14 @@ class NineSpliceFlxSprite
 		}
 	}
 	
+	public function RemoveFromStage()
+	{
+		for (i in 0...9)
+		{
+			FlxG.state.remove(NineSliceGraphic[i]);
+		}
+	}
+	
 	/**
 	 *  Take in height and width and corners of inside Sprite
 	 * @param	Width - Width of Whole Sprite
@@ -137,11 +145,19 @@ class NineSpliceFlxSprite
 	}
 	
 	public function AddClickAndDragMouseEvents()
-	{
-		
+	{		
 		for (i in 0...9)
 		{
 			MouseEventManager.add(NineSliceGraphic[i], GrabSprite, null, null, null, false, true, false);
+		}
+		
+	}
+	
+	public function RemoveMouseEvents()
+	{		
+		for (i in 0...9)
+		{
+			MouseEventManager.remove(NineSliceGraphic[i]);
 		}
 		
 	}

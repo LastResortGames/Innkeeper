@@ -77,9 +77,21 @@ class HeroStatCard
 		
 	}
 	
+	public function RemoveFromStage()
+	{
+		bgSprite.RemoveFromStage();
+		FlxG.state.remove(TitleText);
+		FlxG.state.remove(StatText);
+	}
+	
 	public function AddClickAndDragMouseEvents()
 	{
 		bgSprite.AddClickAndDragMouseEvents();	
+	}
+	
+	public function RemoveMouseEvents()
+	{
+		bgSprite.RemoveMouseEvents();	
 	}
 	
 	public function update()

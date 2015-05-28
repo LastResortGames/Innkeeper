@@ -148,6 +148,7 @@ class Day
 					}
 					GroupCheckingIn = true;
 					InnStats.AddRooms();
+					InnStats.AddStatCardToScreen();
 			
 				}	
 			}
@@ -156,7 +157,6 @@ class Day
 			{
 				if (Reg.RoomChosen)
 				{
-					trace("room");
 					if (Reg.keymanage.GetKeyPressed("Confirm"))
 					{
 						Reg.PriceChosen = true;
@@ -165,9 +165,24 @@ class Day
 					//Start price selection dialogue
 					if (Reg.PriceChosen)
 					{
-						FinalPriceOffer.SetText("Would you like to stay the night at " + Reg.RoomPrice + "?", -1);
-						FinalPriceOffer.textBox.size = 12;
-						FinalPriceOffer.ShowDialog();
+						if (!FinalPriceOffer.DialogShown)
+						{
+							FinalPriceOffer.SetText("Would you like to stay the night at " + Reg.RoomPrice + "?", -1);
+							FinalPriceOffer.textBox.size = 12;
+							FinalPriceOffer.ShowDialog();
+						}
+					}
+					if (Reg.PriceAccepted)
+					{
+						Reg.AvailableRooms[Reg.ChosenRoom].Occupied = true;
+						for (i in 0...Heroes.get(GroupBeingChecked).length)
+						{
+							Heroes.get(GroupBeingChecked)[i].FinishCheckIn();
+						}
+						InnStats.RemoveStatCardFromScreen();
+						FinalPriceOffer.HideDialog();
+						GroupCheckingIn = false;
+						GroupBeingChecked = -1;
 					}
 				}
 				else
@@ -196,6 +211,7 @@ class Day
 			//Just in case?
 		}		
 	}
+	
 	
 	public function UpdateInnStats()
 	{
