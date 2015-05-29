@@ -59,39 +59,24 @@ class InnStatCard
 			var roomTemp = Reg.AvailableRooms[i];
 			var roomOccupiedTxt:FlxText = null;
 			var roomOccupiedButton:DataFlxButton = null;
-			if (roomTemp.Occupied)
-			{
-				 roomOccupiedTxt= new FlxText(Center.x - Width / 5 + 4 * roomstatSpacing, Center.y - Height / 3 + (i * 30), Width , "", 12);
-			}
-			else
-			{
-				roomOccupiedButton = new DataFlxButton(Center.x - Width / 5 + 4 * roomstatSpacing, Center.y - Height / 3 + (i * 30), "Offer Room");
-				roomOccupiedButton.DataID = i;
-				roomOccupiedButton.onUp.callback = roomOccupiedButton.CheckHeroesIn;
-			}
+			roomOccupiedTxt= new FlxText(Center.x - Width / 5 + 4 * roomstatSpacing, Center.y - Height / 3 + (i * 30), Width , "", 12);
+			roomOccupiedButton = new DataFlxButton(Center.x - Width / 5 + 4 * roomstatSpacing, Center.y - Height / 3 + (i * 30), "Offer Room");
+			roomOccupiedButton.DataID = i;
+			roomOccupiedButton.onUp.callback = roomOccupiedButton.CheckHeroesIn;
 			roomNumTxt.text = AddSpaceToDetails(roomTemp.RoomNumber);
 			roomQualTxt.text = AddSpaceToDetails(roomTemp.Quality + ""); 
 			roomBedsTxt.text = AddSpaceToDetails(roomTemp.NumBeds + "");
 			roomCraftTxt.text = AddSpaceToDetails((roomTemp.CraftTable ? "Yes" : "No"));
-			if (roomOccupiedTxt != null)
-			{
-				roomOccupiedTxt.text = AddSpaceToDetails("Occupied");
-			}
+			roomOccupiedTxt.text = AddSpaceToDetails("Occupied");
+			
 			
 			RoomStats.push(new Array<FlxText>());
 			RoomStats[i].push(roomNumTxt);
 			RoomStats[i].push(roomQualTxt);
 			RoomStats[i].push(roomBedsTxt);
 			RoomStats[i].push(roomCraftTxt);
-			if (roomOccupiedButton != null)
-			{
-				RoomOccupancy.push(roomOccupiedButton);
-			}
-			else
-			{
-				RoomStats[i].push(roomOccupiedTxt);
-				RoomOccupancy.push(null);
-			}	
+			RoomOccupancy.push(roomOccupiedButton);
+			RoomStats[i].push(roomOccupiedTxt);
 		}
 		//FlxG.state.add(StatTitles);
 		
@@ -107,14 +92,19 @@ class InnStatCard
 		}
 		for (i in 0...Reg.AvailableRooms.length)
 		{
-			for (j in 0...RoomStats[i].length)
+			for (j in 0...RoomStats[i].length-1)
 			{
+				
 				FlxG.state.add(RoomStats[i][j]);
 				
 			}
-			if (RoomOccupancy[i] != null)
-			{
+			if (!Reg.AvailableRooms[i].Occupied) 
+			{				
 				FlxG.state.add(RoomOccupancy[i]);
+			}
+			else
+			{
+				FlxG.state.add(RoomStats[i][RoomStats[i].length-1]);
 			}
 		}
 		logSprite.AddClickAndDragMouseEvents();

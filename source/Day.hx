@@ -109,6 +109,7 @@ class Day
 				Heroes.set(i, heroList);
 			}
 			
+			InnStats.AddRooms();
 			SlotState = DURINGSLOT;
 			
 			
@@ -147,7 +148,6 @@ class Day
 						Heroes.get(GroupBeingChecked)[i].ComeToDesk(700, 600 + (i*50));
 					}
 					GroupCheckingIn = true;
-					InnStats.AddRooms();
 					InnStats.AddStatCardToScreen();
 			
 				}	
@@ -182,6 +182,10 @@ class Day
 						InnStats.RemoveStatCardFromScreen();
 						FinalPriceOffer.HideDialog();
 						GroupCheckingIn = false;
+						Reg.RoomChosen = false;
+						Reg.PriceChosen = false;
+						Reg.PriceAccepted = false;
+						Reg.RoomPrice = -1;
 						GroupBeingChecked = -1;
 					}
 				}
