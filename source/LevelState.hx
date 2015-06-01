@@ -15,6 +15,7 @@ import EnumReg;
 import flixel.ui.FlxButton;
 import flixel.input.keyboard.FlxKey;
 import flixel.plugin.MouseEventManager;
+import flixel.FlxCamera;
 
 /**
  * ...
@@ -22,7 +23,7 @@ import flixel.plugin.MouseEventManager;
  */
 class LevelState extends FlxState
 {
-	
+	private var overlayCamera:FlxCamera;
 	public var baseInn:Inn;
 	public var innDesk:FlxSprite;
 	public var hero:Hero;
@@ -38,6 +39,14 @@ class LevelState extends FlxState
 	override public function create():Void
 	{
 		super.create();
+		
+		// camera section
+		var cameraOverlay = new FlxSprite( -10000, -10000);
+		overlayCamera = new FlxCamera(600, 40, 850, 350);
+		overlayCamera.follow(cameraOverlay);
+		overlayCamera.bgColor = 0x0;
+		FlxG.cameras.add(overlayCamera);
+		
 		topBorder = new Border(800, 200, 1600, 375, "border");
 		leftBorder = new Border(250, 650, 500, 475, "border");
 		rightBorder = new Border(1050, 650, 1100, 475, "border");
@@ -55,7 +64,7 @@ class LevelState extends FlxState
 	// using this to test inn piece placements
 	private function generateStartingInn()
 	{	
-		baseInn = new Inn(600, 100, ArtReg.GetSprite("lobby"));
+		baseInn = new Inn(-10150, -10075, ArtReg.GetSprite("lobby"));
 		add(baseInn);
 		
 		addHallway(Direction.EAST, baseInn);
