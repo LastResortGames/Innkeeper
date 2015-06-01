@@ -35,6 +35,7 @@ class InnStatCard
 		logSprite.ResizeSlices(width, height, Center);
 		StatTitles = new Array<FlxText>();
 		CardShown = false;
+		
 	}
 	
 	public function AddRooms()

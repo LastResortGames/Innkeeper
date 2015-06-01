@@ -18,7 +18,12 @@ class InitializeState extends FlxState
 		super.create();
 		Reg.keymanage = new KeyboardManager();
 		Reg.keymanage.AddKey("Confirm", ["SPACE"]);
-		Reg.keymanage.AddKey("Test", ["R","T"]);
+		Reg.keymanage.AddKey("Test", ["R", "T"]);
+		Reg.keymanage.AddKey("RaiseNumber", ["UP", "W"]);
+		Reg.keymanage.AddKey("LowerNumber", ["DOWN", "S"]);
+		Reg.keymanage.AddKey("MoveOptionLeft", ["LEFT", "A"]);
+		Reg.keymanage.AddKey("MoveOptionRight", ["RIGHT", "D"]);
+		
 		
 		var read:ReadInFile = new ReadInFile(AssetPaths.SpritePaths__xml,NOTHING);
 		ArtReg.ArtMap = read.ReadXMLFile();

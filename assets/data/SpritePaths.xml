@@ -47,4 +47,8 @@
 		<option value="assets/images/borderHorizontal.png"/>
 		<option value="assets/images/borderVertical.png"/>
 	</sprite>
+	<sprite name="upArrow" value="assets/images/up.png"/>
+	<sprite name="downArrow" value="assets/images/down.png"/>
+	<sprite name="digitBG" value="assets/images/greypanel.png"/>
+	<sprite name="digitBGSel" value="assets/images/bluepanel.png"/>
 </data>

@@ -33,6 +33,7 @@ class LevelState extends FlxState
 	public var topBorder:Border;
 	public var leftBorder:Border;
 	public var rightBorder:Border;
+	var pD:PriceDialogue;
 	
 	override public function create():Void
 	{
@@ -48,6 +49,7 @@ class LevelState extends FlxState
 		add(innDesk);
 		
 		day = new Day();
+		pD = new PriceDialogue(350, 350, 300, 150);
 	}
 	
 	// using this to test inn piece placements
@@ -125,6 +127,7 @@ class LevelState extends FlxState
 	{
 		super.update();
 		day.update();
+		pD.update();
 	}
 	
 	
