@@ -24,6 +24,7 @@ import flixel.FlxCamera;
 class LevelState extends FlxState
 {
 	private var overlayCamera:FlxCamera;
+	private var firstUpdate:Bool;
 	public var baseInn:Inn;
 	public var innDesk:FlxSprite;
 	public var hero:Hero;
@@ -40,11 +41,13 @@ class LevelState extends FlxState
 	{
 		super.create();
 		
+		firstUpdate = true;
+		
 		// camera section
 		var cameraOverlay = new FlxSprite( -10000, -10000);
 		overlayCamera = new FlxCamera(600, 40, 850, 350);
 		overlayCamera.follow(cameraOverlay);
-		overlayCamera.bgColor = 0x0;
+		overlayCamera.bgColor = 0xFFFFFFFF;
 		FlxG.cameras.add(overlayCamera);
 		
 		topBorder = new Border(800, 200, 1600, 375, "border");
@@ -132,9 +135,26 @@ class LevelState extends FlxState
 		trace("clickhere2");
 	}
 	
+	public function setZoom(zoom:Float)
+	{
+		if (zoom < .5) zoom = .5;
+		if (zoom > 4) zoom = 4;
+		
+		zoom = Math.round(zoom * 10) / 10; // corrects float precision problems.
+		
+		overlayCamera.zoom = zoom;
+	}
+	
 	override public function update():Void 
 	{
 		super.update();
+		
+		if (firstUpdate) 
+		{
+			setZoom(1.5);
+			firstUpdate = false;
+		}
+		
 		day.update();
 		pD.update();
 	}
