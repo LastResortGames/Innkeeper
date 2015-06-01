@@ -29,8 +29,6 @@ class PriceDialogue extends DialogueBox
 	{
 		super(X, Y, Width, Height);
 		MaxDigits = 5;
-		UpArrows = new Array<FlxSprite>();
-		DownArrows = new Array<FlxSprite>();
 		PriceText = new Array<FlxText>();
 		PriceValues = new Array<Int>();
 		DigitBG = new Array<FlxSprite>();
@@ -48,19 +46,15 @@ class PriceDialogue extends DialogueBox
 			}
 			PriceValues.push(0);
 			PriceText.push(new FlxText(X - Width / 2 + 14 + i * 34, Y - Height / 2 + 5 + 32, 64, PriceValues[i] +"", 30));
-			PriceText[i].color = FlxColor.BLACK;
-			
-			UpArrows.push(new FlxSprite(X - Width / 2 + i * 34,  Y - Height / 2 + -5, ArtReg.GetSprite("upArrow")));
-			DownArrows.push(new FlxSprite(X - Width / 2 + i * 34, Y - Height / 2 + 69, ArtReg.GetSprite("downArrow")));
+			PriceText[i].color = FlxColor.BLACK;			
 			DigitBG[i].setGraphicSize(32, 48);
 			
 			DigitBG[i].updateHitbox();
 			FlxG.state.add(DigitBG[i]);
 			FlxG.state.add(PriceText[i]);
-			FlxG.state.add(UpArrows[i]);
-			FlxG.state.add(DownArrows[i]);
 		}
 		nsl.AddToStage(X, Y);
+		nsl.AddClickAndDragMouseEvents();
 	}
 	
 	public var rHeld:Int;
@@ -103,6 +97,12 @@ class PriceDialogue extends DialogueBox
 		for (i in 0...MaxDigits)
 		{
 			PriceText[i].text = PriceValues[i] +"";
+		}
+		nsl.updateClickMovement();
+		for (i in 0...MaxDigits)
+		{
+			DigitBG[i].setPosition(nsl.Center.x - Width / 2 + 9 + i * 34, nsl.Center.y - Height / 2 + 32);			
+			PriceText[i].setPosition(nsl.Center.x - Width / 2 + 14 + i * 34, nsl.Center.y - Height / 2 + 5 + 32);
 		}
 		
 	}
